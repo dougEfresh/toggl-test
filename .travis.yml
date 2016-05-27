@@ -1,7 +1,6 @@
 language: go
 sudo: false
 go:
-  - 1.5.4
   - 1.6.2
 before_install:
   - go get github.com/mattn/goveralls
@@ -10,5 +9,6 @@ os:
   - linux
 script:
   - go build -race
-  - go test -v 
-  - $HOME/gopath/bin/goveralls -service=travis-ci
+  - go test -v -covermode=count -coverprofile=coverage.out
+  - $HOME/gopath/bin/goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+
