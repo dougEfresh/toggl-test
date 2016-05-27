@@ -65,7 +65,7 @@ func load() {
 	if len(mockResponses) > 0 {
 		return
 	}
-	err := filepath.Walk("../mock", visit)
+	err := filepath.Walk("mock", visit)
 	if err != nil {
 		panic(err)
 	}
