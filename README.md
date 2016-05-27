@@ -18,16 +18,4 @@ You then import it with this import path:
 
 ```go
 import "gopkg.in/dougEfresh/gtoggl.v8"
-import "github/dougEfresh/gtoggl/gtimeentry"
-
-func main() {
-	thc, err := gtoggl.NewClient("token")
-	...
-	tc, err := gtimeentry.NewClient(thc)
-	...
-	timeentry,err := tc.Get(1)
-	if err == nil {
-		panic(err)
-	}
-}
 ```
