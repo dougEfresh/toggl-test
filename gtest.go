@@ -52,7 +52,7 @@ func visit(path string, f os.FileInfo, err error) error {
 
 func getResponse() mockFunc {
 	return func(req *http.Request) []byte {
-		r := fmt.Sprintf("./mock/%s%s.json", req.Method, req.URL.Path)
+		r := fmt.Sprintf("mock/%s%s.json", req.Method, req.URL.Path)
 		resp := mockResponses[r]
 		if resp == nil {
 			panic("Unknown request " + r)
@@ -65,7 +65,7 @@ func load() {
 	if len(mockResponses) > 0 {
 		return
 	}
-	err := filepath.Walk("mock", visit)
+	err := filepath.Walk("./mock", visit)
 	if err != nil {
 		panic(err)
 	}
