@@ -3,7 +3,6 @@ package gtest
 import (
 	"bytes"
 	"fmt"
-	"gopkg.in/dougEfresh/gtoggl.v8"
 	"gopkg.in/dougEfresh/toggl-http-client.v8"
 	"io/ioutil"
 	"net/http"
@@ -84,12 +83,12 @@ func (t *mockTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	return response, nil
 }
 
-func (tu TestUtil) MockClient(t *testing.T) *gtoggl.TogglClient {
+func (tu TestUtil) MockClient(t *testing.T) *ghttp.TogglHttpClient {
 	load()
 	l := &TestLogger{Testing:t}
 	httpClient := &http.Client{Transport: newMockTransport(getResponse())}
 	optionsWithClient := []ghttp.ClientOptionFunc{ghttp.SetHttpClient(httpClient), ghttp.SetTraceLogger(l)}
-	client, err := gtoggl.NewClient("abc1234567890def", optionsWithClient...)
+	client, err := ghttp.NewClient("abc1234567890def", optionsWithClient...)
 	if err != nil {
 		panic(err)
 	}
