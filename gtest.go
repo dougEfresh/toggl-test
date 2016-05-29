@@ -18,11 +18,11 @@ type TestUtil struct {
 }
 
 type TestLogger struct {
-	T *testing.T
+	Testing *testing.T
 }
 
 func (l *TestLogger) Printf(format string, v ...interface{}) {
-	l.T.Logf(format,v)
+	l.Testing.Logf(format,v)
 }
 
 var mockResponses = make(map[string][]byte)
@@ -84,9 +84,9 @@ func (t *mockTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	return response, nil
 }
 
-func (t TestUtil) MockClient(t testing.T) *gtoggl.TogglClient {
+func (tu TestUtil) MockClient(t *testing.T) *gtoggl.TogglClient {
 	load()
-	l := &TestLogger{t}
+	l := &TestLogger{Testing:t}
 	httpClient := &http.Client{Transport: newMockTransport(getResponse())}
 	optionsWithClient := []ghttp.ClientOptionFunc{ghttp.SetHttpClient(httpClient), ghttp.SetTraceLogger(l)}
 	client, err := gtoggl.NewClient("abc1234567890def", optionsWithClient...)
