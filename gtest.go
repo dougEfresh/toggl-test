@@ -13,7 +13,6 @@ import (
 )
 
 type TestUtil struct {
-
 }
 
 type TestLogger struct {
@@ -21,7 +20,7 @@ type TestLogger struct {
 }
 
 func (l *TestLogger) Printf(format string, v ...interface{}) {
-	l.Testing.Logf(format,v)
+	l.Testing.Logf(format, v)
 }
 
 var mockResponses = make(map[string][]byte)
@@ -85,7 +84,7 @@ func (t *mockTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 
 func (tu TestUtil) MockClient(t *testing.T) *ghttp.TogglHttpClient {
 	load()
-	l := &TestLogger{Testing:t}
+	l := &TestLogger{Testing: t}
 	httpClient := &http.Client{Transport: newMockTransport(getResponse())}
 	optionsWithClient := []ghttp.ClientOptionFunc{ghttp.SetHttpClient(httpClient), ghttp.SetTraceLogger(l)}
 	client, err := ghttp.NewClient("abc1234567890def", optionsWithClient...)
