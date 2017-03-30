@@ -20,7 +20,9 @@ type TestLogger struct {
 }
 
 func (l *TestLogger) Printf(format string, v ...interface{}) {
-	l.Testing.Logf(format, v)
+	if l.Testing != nil {
+		l.Testing.Logf(format, v)
+	}
 }
 
 var mockResponses = make(map[string][]byte)
