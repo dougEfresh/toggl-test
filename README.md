@@ -1,5 +1,2 @@
-# Toggl Test
- 
- Toggl Test is [gtoggl](https://github.com/dougEfresh/gtoggl)
- 
-```
+# Deprecated
+Please see [gtoogl-api](https://github.com/dougEfresh/gtoggl-api)
